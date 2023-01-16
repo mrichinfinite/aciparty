@@ -1,3 +1,5 @@
+# This program queries an APIC tenant and provides a JSON response with all the child objects contained within that tenant
+
 # Require
 require 'httparty'
 require 'uri'
