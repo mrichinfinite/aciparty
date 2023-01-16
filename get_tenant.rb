@@ -14,7 +14,7 @@ begin
   # Validate the APIC URL
   base_url = URI(apic_url)
 
-  # If the APIC URL is invalid, throw an error and exit the program
+# If the APIC URL is invalid, throw an error and exit the program
 rescue URI::InvalidURIError
   puts "\n Invalid URL"
   exit
