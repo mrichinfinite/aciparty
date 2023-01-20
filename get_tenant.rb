@@ -1,4 +1,4 @@
-# This program queries an APIC tenant and provides a JSON response with all the child objects contained within that tenant
+# This program queries an APIC tenant and writes all the child objects contained within that tenant to a JSON file
 
 # Require
 require 'httparty'
@@ -10,11 +10,11 @@ require 'io/console'
 print "APIC URL: "
 apic_url = gets.chomp
 
-# If URL is valid, continue; else, throw an error and exit program
+# If the URL is valid, continue; else, exit the program
 if apic_url =~ URI.regexp
   # URL is valid
 else
-  puts "\n URL is invalid, be sure to start with http:// or https://, exiting"
+  puts "\n URL is invalid, be sure to start with http:// or https:// ; exiting"
   exit
 end
 
@@ -39,13 +39,13 @@ response = HTTParty.post("#{apic_url}/api/aaaLogin.json", verify: false,
 
 # If the response code is not 200, exit the program; otherwise, continue
 if response.code != 200
-  puts "\n \n Response: #{response.code}, exiting"
+  puts "\n \n Response: #{response.code} ; exiting"
   exit
 else
   puts "\n \n Success!"
 end
 
-# If response code is 200, continue with the program
+# When the response code is 200, continue with the program
 case response.code
 when 200
   # Extract the bearer token from the response
@@ -63,11 +63,15 @@ when 200
     headers: { "Authorization" => "Bearer #{auth_token}", "Cookie" => cookie }
   )
   
-  # Process the response
-  puts JSON.pretty_generate(response.parsed_response)
-  puts "\n Response: #{response.code}"
+  # Process the response and write it to a file in the current working directory
+  json_response = JSON.pretty_generate(response.parsed_response)
+  File.write("tn-#{tenant}.json", json_response)
+  puts "\n Response: #{response.code}, check JSON file in current working directory for output"
+
+# Else when the response code is not 200, exit the program
 else
   puts "\n Response: #{response.code}"
+  exit
 end
 
 # Get another tenant
@@ -75,7 +79,7 @@ while true do
   print "\n Would you like to get another tenant from this fabric? [y/n] "
   get_tenant = gets.chomp
   
-  # Print output based on user input
+  # If the user wants to get another tenant, continue with the program
   if get_tenant == "y"
     # Input the tenant name
     print "\n Tenant: "
@@ -86,18 +90,24 @@ while true do
       headers: { "Authorization" => "Bearer #{auth_token}", "Cookie" => cookie }
     )
 
-    # Process the response
-    puts JSON.pretty_generate(response.parsed_response)
-    puts "\n Response: #{response.code}"
+  # Process the response and write it to a file in the current working directory
+  json_response = JSON.pretty_generate(response.parsed_response)
+  File.write("tn-#{tenant}.json", json_response)
+  puts "\n Response: #{response.code}, check JSON file in current working directory for output"
+
+  # Else if the response code is not 200, exit the program
+  elsif response.code != 200
+    puts "\n \n Response: #{response.code} ; exiting"
+    exit
   
-  # If the user doesn't want to get another tenant, exit program
+  # Else if the user doesn't want to get another tenant, exit the program
   elsif get_tenant == "n"
     puts "\n Enjoy your day!"
     exit
   
-  # If any response other than y/n, throw an error and exit program
+  # Else any response other than y/n, exit the program
   else
-    puts "\n Invalid input, only y/n is accepted, exiting"
+    puts "\n Invalid input, only y/n is accepted ; exiting"
     exit
   end
 end
