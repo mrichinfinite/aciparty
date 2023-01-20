@@ -39,7 +39,7 @@ response = HTTParty.post("#{apic_url}/api/aaaLogin.json", verify: false,
 
 # If the response code is not 200, exit the program; otherwise, continue
 if response.code != 200
-  puts "\n Response: #{response.code}, exiting"
+  puts "\n \n Response: #{response.code}, exiting"
   exit
 else
   puts "\n \n Success!"
@@ -90,14 +90,14 @@ while true do
     puts JSON.pretty_generate(response.parsed_response)
     puts "\n Response: #{response.code}"
   
-  # Break out of program if user doesn't want to get another tenant  
+  # If the user doesn't want to get another tenant, exit program
   elsif get_tenant == "n"
     puts "\n Enjoy your day!"
-    break
+    exit
   
-  # If any response other than y/n, throw an error and break out of program
+  # If any response other than y/n, throw an error and exit program
   else
     puts "\n Invalid input, only y/n is accepted, exiting"
-    break
+    exit
   end
 end
