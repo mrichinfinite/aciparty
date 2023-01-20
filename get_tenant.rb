@@ -59,7 +59,7 @@ when 200
   tenant = gets.chomp
   
   # Use the bearer token and cookie for subsequent GET request to query tenant
-  response = HTTParty.get("#{apic_url}/api/node/mo/uni/tn-#{tenant}.json?query-target=children", verify: false,
+  response = HTTParty.get("#{apic_url}/api/node/mo/uni/tn-#{tenant}.json?rsp-subtree=full", verify: false,
     headers: { "Authorization" => "Bearer #{auth_token}", "Cookie" => cookie }
   )
   
@@ -86,7 +86,7 @@ while true do
     tenant = gets.chomp
     
     # Make another GET request to query tenant
-    response = HTTParty.get("#{apic_url}/api/node/mo/uni/tn-#{tenant}.json?query-target=children", verify: false,
+    response = HTTParty.get("#{apic_url}/api/node/mo/uni/tn-#{tenant}.json?rsp-subtree=full", verify: false,
       headers: { "Authorization" => "Bearer #{auth_token}", "Cookie" => cookie }
     )
 
