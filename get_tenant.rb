@@ -70,7 +70,7 @@ when 200
 
 # Else when the response code is not 200, exit the program
 else
-  puts "\n Response: #{response.code}"
+  puts "\n Response: #{response.code} ; exiting"
   exit
 end
 
