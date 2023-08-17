@@ -56,7 +56,7 @@ when 200
     # Input the Tenant name
     print "\n Tenant: "
     tenant = gets.chomp
-    # Check if the input is empty or contains only special characters
+    # If the input is empty or contains any special characters, exit the program
     if tenant.empty? || tenant.match(/[^\p{Alnum}]/)
         puts "\n Invalid input or special characters detected ; exiting"
         exit
@@ -365,7 +365,7 @@ while true do
         # Input the Tenant name
         print "\n Tenant: "
         tenant = gets.chomp
-        # Check if the input is empty or contains only special characters
+        # If the input is empty or contains any special characters, exit the program
         if tenant.empty? || tenant.match(/[^\p{Alnum}]/)
             puts "\n Invalid input or special characters detected ; exiting"
             exit
