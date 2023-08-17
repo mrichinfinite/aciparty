@@ -355,7 +355,7 @@ else
     exit
 end
 
-# Create more tenant objetcs
+# Create more tenant objects
 while true do
     print "\n Would you like to create more tenant objects in this fabric? [y/n] "
     create_tenant = gets.chomp
@@ -663,7 +663,7 @@ while true do
         puts "\n Response: #{response.code} ; tenant created!"
     end
 
-    # Else if the user doesn't want to get another tenant, exit the program
+    # Else if the user doesn't want to create more tenant objects, exit the program
     elsif create_tenant == "n"
         puts "\n Enjoy your day!"
         exit
