@@ -57,7 +57,7 @@ when 200
     print "\n Tenant: "
     tenant = gets.chomp
     # If the input is empty or contains any special characters, exit the program
-    if tenant.empty? || tenant.match(/[^\p{Alnum}]/)
+    if tenant.empty? || tenant.match(/[^\p{Alnum}_-]/)
         puts "\n Invalid input or special characters detected ; exiting"
         exit
     end
@@ -65,7 +65,7 @@ when 200
     # Input the VRF name
     print "\n VRF: "
     vrf = gets.chomp
-    if vrf.empty? || vrf.match(/[^\p{Alnum}]/)
+    if vrf.empty? || vrf.match(/[^\p{Alnum}_-]/)
         puts "\n Invalid input or special characters detected ; exiting"
         exit
     end
@@ -73,7 +73,7 @@ when 200
     # Input the BD name
     print "\n Bridge Domain: "
     bd = gets.chomp
-    if bd.empty? || bd.match(/[^\p{Alnum}]/)
+    if bd.empty? || bd.match(/[^\p{Alnum}_-]/)
         puts "\n Invalid input or special characters detected ; exiting"
         exit
     end
@@ -81,7 +81,7 @@ when 200
     # Input the AP name
     print "\n Application Profile: "
     ap = gets.chomp
-    if ap.empty? || ap.match(/[^\p{Alnum}]/)
+    if ap.empty? || ap.match(/[^\p{Alnum}_-]/)
         puts "\n Invalid input or special characters detected ; exiting"
         exit
     end
@@ -89,7 +89,7 @@ when 200
     # Input the EPG name
     print "\n EPG: "
     epg = gets.chomp
-    if epg.empty? || epg.match(/[^\p{Alnum}]/)
+    if epg.empty? || epg.match(/[^\p{Alnum}_-]/)
         puts "\n Invalid input or special characters detected ; exiting"
         exit
     end
@@ -366,7 +366,7 @@ while true do
         print "\n Tenant: "
         tenant = gets.chomp
         # If the input is empty or contains any special characters, exit the program
-        if tenant.empty? || tenant.match(/[^\p{Alnum}]/)
+        if tenant.empty? || tenant.match(/[^\p{Alnum}_-]/)
             puts "\n Invalid input or special characters detected ; exiting"
             exit
         end
@@ -374,7 +374,7 @@ while true do
         # Input the VRF name
         print "\n VRF: "
         vrf = gets.chomp
-        if vrf.empty? || vrf.match(/[^\p{Alnum}]/)
+        if vrf.empty? || vrf.match(/[^\p{Alnum}_-]/)
             puts "\n Invalid input or special characters detected ; exiting"
             exit
         end
@@ -382,7 +382,7 @@ while true do
         # Input the BD name
         print "\n Bridge Domain: "
         bd = gets.chomp
-        if bd.empty? || bd.match(/[^\p{Alnum}]/)
+        if bd.empty? || bd.match(/[^\p{Alnum}_-]/)
             puts "\n Invalid input or special characters detected ; exiting"
             exit
         end
@@ -390,7 +390,7 @@ while true do
         # Input the AP name
         print "\n Application Profile: "
         ap = gets.chomp
-        if ap.empty? || ap.match(/[^\p{Alnum}]/)
+        if ap.empty? || ap.match(/[^\p{Alnum}_-]/)
             puts "\n Invalid input or special characters detected ; exiting"
             exit
         end
@@ -398,7 +398,7 @@ while true do
         # Input the EPG name
         print "\n EPG: "
         epg = gets.chomp
-        if epg.empty? || epg.match(/[^\p{Alnum}]/)
+        if epg.empty? || epg.match(/[^\p{Alnum}_-]/)
             puts "\n Invalid input or special characters detected ; exiting"
             exit
         end
