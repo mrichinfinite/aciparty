@@ -1,4 +1,4 @@
-# This program creates access policies on an APIC specifically for LLDP-enabled leaf access ports using a physical domain
+# This program creates access policies on an APIC specifically for LLDP-enabled and LACP Active vPC ports using a physical domain
 
 # Require
 require 'httparty'
